@@ -31,7 +31,7 @@ class HomePage extends StatelessWidget {
           PrimaryButton(
             title: 'Novo jogo',
             onPressed: () {
-              // context.push('/rules');
+              context.push('/level');
             },
           ),
           const SizedBox(height: 20),

@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 export 'package:go_router/go_router.dart';
 
+import '../../features/game/pages/level_page.dart';
 import '../../features/home/pages/home_page.dart';
 import '../../features/home/pages/rules_page.dart';
 import '../../features/home/pages/settings_page.dart';
@@ -24,6 +25,10 @@ final routerConfig = GoRouter(
     GoRoute(
       path: '/rules',
       builder: (context, state) => const RulesPage(),
+    ),
+    GoRoute(
+      path: '/level',
+      builder: (context, state) => const LevelPage(),
     ),
   ],
 );
