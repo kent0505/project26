@@ -31,7 +31,7 @@ class LevelPage extends StatelessWidget {
                   SizedBox(width: 16),
                   LevelCard(
                     level: 2,
-                    active: false,
+                    active: true,
                     price: 50,
                   ),
                 ],
@@ -41,13 +41,13 @@ class LevelPage extends StatelessWidget {
                 children: [
                   LevelCard(
                     level: 3,
-                    active: false,
+                    active: true,
                     price: 80,
                   ),
                   SizedBox(width: 16),
                   LevelCard(
                     level: 4,
-                    active: false,
+                    active: true,
                     price: 120,
                   ),
                 ],
@@ -57,13 +57,13 @@ class LevelPage extends StatelessWidget {
                 children: [
                   LevelCard(
                     level: 5,
-                    active: false,
+                    active: true,
                     price: 150,
                   ),
                   SizedBox(width: 16),
                   LevelCard(
                     level: 6,
-                    active: false,
+                    active: true,
                     price: 200,
                   ),
                 ],

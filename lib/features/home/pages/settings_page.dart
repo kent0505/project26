@@ -18,13 +18,13 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  bool isSound = false;
+  bool sound = false;
 
   void onSound() async {
     final prefs = await SharedPreferences.getInstance();
-    sound = !sound;
-    isSound = sound;
-    prefs.setBool('sound', sound);
+    soundData = !soundData;
+    sound = soundData;
+    prefs.setBool('soundData', soundData);
     setState(() {});
   }
 

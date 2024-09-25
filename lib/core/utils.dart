@@ -5,15 +5,15 @@ import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 double navBarHeight = 60;
-int level = 1;
-int coins = 0;
-bool sound = false;
+int levelData = 1;
+int coinsData = 0;
+bool soundData = false;
 
 Future<void> getData() async {
   final prefs = await SharedPreferences.getInstance();
-  level = prefs.getInt('level') ?? 1;
-  coins = prefs.getInt('coins') ?? 0;
-  sound = prefs.getBool('sound') ?? false;
+  levelData = prefs.getInt('levelData') ?? 1;
+  coinsData = prefs.getInt('coinsData') ?? 0;
+  soundData = prefs.getBool('soundData') ?? false;
 }
 
 int getCurrentTimestamp() {
@@ -102,4 +102,10 @@ void precacheImages(BuildContext context) {
   } catch (e) {
     logger(e);
   }
+}
+
+int getBg(int level) {
+  if (level == 3 || level == 4) return 2;
+  if (level == 5 || level == 6) return 3;
+  return 1;
 }
