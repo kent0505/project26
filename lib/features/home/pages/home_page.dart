@@ -1,13 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/utils.dart';
 import '../../../core/widgets/buttons/primary_button.dart';
 import '../../../core/widgets/custom_scaffold.dart';
+import '../widgets/reward_dialog.dart';
 import '../widgets/settings_button.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  void checkReward() async {
+    final prefs = await SharedPreferences.getInstance();
+    int lastReward = prefs.getInt('lastReward') ?? 0;
+
+    if ((lastReward + 86400) < getCurrentTimestamp()) {
+      if (mounted) {
+        showDialog(
+          context: context,
+          builder: (context) {
+            return const RewardDialog();
+          },
+        );
+      }
+    } else {
+      logger(getCurrentTimestamp() - lastReward);
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    checkReward();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +62,8 @@ class HomePage extends StatelessWidget {
           PrimaryButton(
             title: 'Novo jogo',
             onPressed: () {
-              context.push('/level');
+              // context.push('/level');
+              checkReward();
             },
           ),
           const SizedBox(height: 20),

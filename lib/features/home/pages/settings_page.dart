@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/config/app_colors.dart';
-import '../../../core/db/prefs.dart';
 import '../../../core/utils.dart';
 import '../../../core/widgets/buttons/primary_button.dart';
 import '../../../core/widgets/custom_scaffold.dart';
@@ -21,19 +21,18 @@ class _SettingsPageState extends State<SettingsPage> {
   bool sound = false;
 
   void onSound() async {
-    setState(() {
-      sound = !sound;
-    });
-    Prefs.soundData = sound;
-    await saveBool(Prefs.sound, sound);
+    final prefs = await SharedPreferences.getInstance();
+    sound = !sound;
+    prefs.setBool('sound', sound);
+    setState(() {});
   }
 
   void onReset() {}
 
-  void getSound() {
-    setState(() {
-      sound = Prefs.soundData;
-    });
+  void getSound() async {
+    final prefs = await SharedPreferences.getInstance();
+    sound = prefs.getBool('sound') ?? false;
+    setState(() {});
   }
 
   @override
