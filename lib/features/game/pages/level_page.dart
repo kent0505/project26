@@ -22,49 +22,74 @@ class LevelPage extends StatelessWidget {
             ),
             children: [
               SizedBox(height: 100 + getStatusBar(context)),
-              const Row(
+              Row(
                 children: [
-                  LevelCard(
+                  const LevelCard(
                     level: 1,
                     active: true,
                   ),
-                  SizedBox(width: 16),
-                  LevelCard(
-                    level: 2,
-                    active: true,
-                    price: 50,
+                  const SizedBox(width: 16),
+                  ValueListenableBuilder(
+                    valueListenable: coinsData,
+                    builder: (context, value, child) {
+                      return LevelCard(
+                        level: 2,
+                        active: value > 50,
+                        price: 50,
+                      );
+                    },
+                  )
+                ],
+              ),
+              const SizedBox(height: 20),
+              Row(
+                children: [
+                  ValueListenableBuilder(
+                    valueListenable: coinsData,
+                    builder: (context, value, child) {
+                      return LevelCard(
+                        level: 3,
+                        active: value > 80,
+                        price: 80,
+                      );
+                    },
+                  ),
+                  const SizedBox(width: 16),
+                  ValueListenableBuilder(
+                    valueListenable: coinsData,
+                    builder: (context, value, child) {
+                      return LevelCard(
+                        level: 4,
+                        active: value > 120,
+                        price: 120,
+                      );
+                    },
                   ),
                 ],
               ),
               const SizedBox(height: 20),
-              const Row(
+              Row(
                 children: [
-                  LevelCard(
-                    level: 3,
-                    active: true,
-                    price: 80,
+                  ValueListenableBuilder(
+                    valueListenable: coinsData,
+                    builder: (context, value, child) {
+                      return LevelCard(
+                        level: 5,
+                        active: value > 150,
+                        price: 150,
+                      );
+                    },
                   ),
-                  SizedBox(width: 16),
-                  LevelCard(
-                    level: 4,
-                    active: true,
-                    price: 120,
-                  ),
-                ],
-              ),
-              const SizedBox(height: 20),
-              const Row(
-                children: [
-                  LevelCard(
-                    level: 5,
-                    active: true,
-                    price: 150,
-                  ),
-                  SizedBox(width: 16),
-                  LevelCard(
-                    level: 6,
-                    active: true,
-                    price: 200,
+                  const SizedBox(width: 16),
+                  ValueListenableBuilder(
+                    valueListenable: coinsData,
+                    builder: (context, value, child) {
+                      return LevelCard(
+                        level: 6,
+                        active: value > 200,
+                        price: 200,
+                      );
+                    },
                   ),
                 ],
               ),

@@ -24,11 +24,22 @@ class _SettingsPageState extends State<SettingsPage> {
     final prefs = await SharedPreferences.getInstance();
     soundData = !soundData;
     sound = soundData;
-    prefs.setBool('soundData', soundData);
+    prefs.setBool('soundData', sound);
     setState(() {});
   }
 
-  void onReset() {}
+  void onReset() async {
+    final prefs = await SharedPreferences.getInstance();
+    coinsData.value = 0;
+    prefs.setInt('coinsData', coinsData.value);
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    sound = soundData;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -104,7 +115,7 @@ class _SettingsPageState extends State<SettingsPage> {
             child: Column(
               children: [
                 const Spacer(),
-                const TextB('Melhor pontuação:', fontSize: 24),
+                TextB('Melhor pontuação: ${coinsData.value}', fontSize: 24),
                 const Spacer(),
                 CupertinoButton(
                   onPressed: onReset,

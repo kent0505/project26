@@ -6,14 +6,20 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 double navBarHeight = 60;
 int levelData = 1;
-int coinsData = 0;
+ValueNotifier<int> coinsData = ValueNotifier(0);
 bool soundData = false;
 
 Future<void> getData() async {
   final prefs = await SharedPreferences.getInstance();
   levelData = prefs.getInt('levelData') ?? 1;
-  coinsData = prefs.getInt('coinsData') ?? 0;
+  coinsData.value = prefs.getInt('coinsData') ?? 0;
   soundData = prefs.getBool('soundData') ?? false;
+}
+
+addCoins(int coin) async {
+  final prefs = await SharedPreferences.getInstance();
+  coinsData.value += coin;
+  prefs.setInt('coinsData', coinsData.value);
 }
 
 int getCurrentTimestamp() {

@@ -22,8 +22,7 @@ class _RewardDialogState extends State<RewardDialog> {
   void onGift(int value) async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setInt('lastReward', getCurrentTimestamp());
-    int points = prefs.getInt('points') ?? 0;
-    prefs.setInt('points', points + value);
+    addCoins(value);
     logger(value);
     setState(() {
       rewarded = true;

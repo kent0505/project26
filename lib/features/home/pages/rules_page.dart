@@ -73,7 +73,7 @@ class RulesPage extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   Spacer(),
-                  TextB('Pontuação: 50', fontSize: 40),
+                  TextB('Pontuação: 10', fontSize: 40),
                 ],
               ),
             ),
