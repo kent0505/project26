@@ -101,6 +101,7 @@ void precacheImages(BuildContext context) {
       'assets/bg2.png',
       'assets/bg3.png',
       'assets/logo.png',
+      'assets/girl.png',
     ];
     for (String assets in imageAssets) {
       precacheImage(AssetImage(assets), context);
