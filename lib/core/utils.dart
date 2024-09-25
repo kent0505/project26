@@ -2,8 +2,19 @@ import 'dart:developer' as developer;
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 double navBarHeight = 60;
+int level = 1;
+int coins = 0;
+bool sound = false;
+
+Future<void> getData() async {
+  final prefs = await SharedPreferences.getInstance();
+  level = prefs.getInt('level') ?? 1;
+  coins = prefs.getInt('coins') ?? 0;
+  sound = prefs.getBool('sound') ?? false;
+}
 
 int getCurrentTimestamp() {
   return DateTime.now().millisecondsSinceEpoch ~/ 1000;

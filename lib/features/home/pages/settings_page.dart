@@ -18,28 +18,17 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  bool sound = false;
+  bool isSound = false;
 
   void onSound() async {
     final prefs = await SharedPreferences.getInstance();
     sound = !sound;
+    isSound = sound;
     prefs.setBool('sound', sound);
     setState(() {});
   }
 
   void onReset() {}
-
-  void getSound() async {
-    final prefs = await SharedPreferences.getInstance();
-    sound = prefs.getBool('sound') ?? false;
-    setState(() {});
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    getSound();
-  }
 
   @override
   Widget build(BuildContext context) {

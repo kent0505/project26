@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project26/core/utils.dart';
 
 import '../../core/config/router.dart';
 import '../../core/widgets/custom_scaffold.dart';
@@ -12,12 +13,14 @@ class SplashPage extends StatefulWidget {
 
 class _SplashPageState extends State<SplashPage> {
   void load() async {
-    Future.delayed(
-      const Duration(seconds: 2),
-      () {
-        if (mounted) context.go('/home');
-      },
-    );
+    await getData().then((value) {
+      Future.delayed(
+        const Duration(seconds: 2),
+        () {
+          if (mounted) context.go('/home');
+        },
+      );
+    });
   }
 
   @override

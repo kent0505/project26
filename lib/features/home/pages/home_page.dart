@@ -62,8 +62,7 @@ class _HomePageState extends State<HomePage> {
           PrimaryButton(
             title: 'Novo jogo',
             onPressed: () {
-              // context.push('/level');
-              checkReward();
+              context.push('/level');
             },
           ),
           const SizedBox(height: 20),
